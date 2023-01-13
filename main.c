@@ -13,6 +13,12 @@ void initialize()
   }
 }
 
+void setBomb(){
+  map[0][1] = -2;
+  map[2][3] = -2;
+  map[5][4] = -2;
+}
+
 void printMap(int x_size, int y_size)
 {
   printf("  x 1 2 3 4 5\n");
@@ -39,5 +45,6 @@ void printMap(int x_size, int y_size)
 
 int main(){
   initialize();
+  setBomb();
   printMap(5, 5);
 }
