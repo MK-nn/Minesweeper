@@ -43,8 +43,26 @@ void printMap(int x_size, int y_size)
   printf("\n");
 }
 
+void user_task()
+{
+  int x, y;
+  printf("x座標を入力してください: ");
+  scanf("%d", &x);
+  printf("y座標を入力してください: ");
+  scanf("%d", &y);
+  if (map[y - 1][x - 1] == -2)
+  {
+    printf("爆弾があります\n");
+  }
+  else
+  {
+    printf("爆弾はありません\n");
+  }
+}
+
 int main(){
   initialize();
   setBomb();
   printMap(5, 5);
+  user_task();
 }
