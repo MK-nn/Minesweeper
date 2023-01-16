@@ -45,18 +45,49 @@ void printMap(int x_size, int y_size)
 
 void user_task()
 {
-  int x, y;
-  printf("x座標を入力してください: ");
-  scanf("%d", &x);
-  printf("y座標を入力してください: ");
-  scanf("%d", &y);
-  if (map[y - 1][x - 1] == -2)
+  int condition = 1;
+  while (condition)
   {
-    printf("爆弾があります\n");
-  }
-  else
-  {
-    printf("爆弾はありません\n");
+    printf("座標を入力してください(x, y) :");
+    int x1, y1;
+    scanf("%d %d", &x1, &y1);
+
+    x1--;
+    y1--;
+    if (map[y1][x1] == -2)
+    {
+      printf("爆弾がありました。ゲームオーバーです。\n");
+      condition = 0;
+    }
+    else if (map[y1][x1] == -1)
+    {
+      int cnt = 0;
+      if (map[y1 - 1][x1] == -2)
+        cnt++;
+      if (map[y1 + 1][x1] == -2)
+        cnt++;
+      if (map[y1][x1 - 1] == -2)
+        cnt++;
+      if (map[y1][x1 + 1] == -2)
+        cnt++;
+      if (map[y1 - 1][x1 - 1] == -2)
+        cnt++;
+      if (map[y1 + 1][x1 + 1] == -2)
+        cnt++;
+      if (map[y1 + 1][x1 - 1] == -2)
+        cnt++;
+      if (map[y1 - 1][x1 + 1] == -2)
+        cnt++;
+
+      map[y1][x1] = cnt;
+      printf("爆弾はありませんでした。\n");
+      printMap(5, 5);
+    }
+    else
+    {
+      printf("既に開いています。\n");
+      printMap(5, 5);
+    }
   }
 }
 
