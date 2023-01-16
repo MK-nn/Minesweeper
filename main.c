@@ -49,52 +49,51 @@ void user_task()
   int condition = 1;
   while (condition)
   {
+    printMap(5, 5);
     printf("座標を入力してください(x, y) :");
-    int x1, y1;
-    scanf("%d %d", &x1, &y1);
+    int x, y;
+    scanf("%d %d", &x, &y);
 
-    x1--;
-    y1--;
-    if (map[y1][x1] == -2)
+    x--;
+    y--;
+    if (map[y][x] == -2)
     {
       printf("爆弾がありました。ゲームオーバーです。\n");
       condition = 0;
     }
-    else if (map[y1][x1] == -1)
+    else if (map[y][x] == -1)
     {
       int cnt = 0;
-      if (map[y1 - 1][x1] == -2)
+      if (map[y - 1][x] == -2)
         cnt++;
-      if (map[y1 + 1][x1] == -2)
+      if (map[y + 1][x] == -2)
         cnt++;
-      if (map[y1][x1 - 1] == -2)
+      if (map[y][x - 1] == -2)
         cnt++;
-      if (map[y1][x1 + 1] == -2)
+      if (map[y][x + 1] == -2)
         cnt++;
-      if (map[y1 - 1][x1 - 1] == -2)
+      if (map[y - 1][x - 1] == -2)
         cnt++;
-      if (map[y1 + 1][x1 + 1] == -2)
+      if (map[y + 1][x + 1] == -2)
         cnt++;
-      if (map[y1 + 1][x1 - 1] == -2)
+      if (map[y + 1][x - 1] == -2)
         cnt++;
-      if (map[y1 - 1][x1 + 1] == -2)
+      if (map[y - 1][x + 1] == -2)
         cnt++;
 
-      map[y1][x1] = cnt;
+      map[y][x] = cnt;
       printf("爆弾はありませんでした。\n");
-      printMap(5, 5);
     }
     else
     {
       printf("既に開いています。\n");
-      printMap(5, 5);
     }
+    printf("-----------------------------------\n");
   }
 }
 
 int main(){
   initialize();
   setBomb();
-  printMap(5, 5);
   user_task();
 }
