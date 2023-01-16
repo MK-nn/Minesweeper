@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int map[5][5];
 
@@ -15,6 +16,8 @@ void initialize()
 }
 
 void setBomb(){
+  srand((unsigned int)time(NULL));
+
   map[rand() % 5][rand() % 5] = -2;
   map[rand() % 5][rand() % 5] = -2;
   map[rand() % 5][rand() % 5] = -2;
