@@ -88,21 +88,21 @@ void user_task()
     else if (map[y][x] == -1)
     {
       int cnt = 0;
-      if (map[y - 1][x] == -2)
+      if (map[y - 1][x] == -2 && y - 1 >= 0)
         cnt++;
-      if (map[y + 1][x] == -2)
+      if (map[y + 1][x] == -2 && y + 1 < 5)
         cnt++;
-      if (map[y][x - 1] == -2)
+      if (map[y][x - 1] == -2 && x - 1 >= 0)
         cnt++;
-      if (map[y][x + 1] == -2)
+      if (map[y][x + 1] == -2 && x + 1 < 5)
         cnt++;
-      if (map[y - 1][x - 1] == -2)
+      if (map[y - 1][x - 1] == -2 && y - 1 >= 0 && x - 1 >= 0)
         cnt++;
-      if (map[y + 1][x + 1] == -2)
+      if (map[y + 1][x + 1] == -2 && y + 1 < 5 && x + 1 < 5)
         cnt++;
-      if (map[y + 1][x - 1] == -2)
+      if (map[y + 1][x - 1] == -2 && y + 1 < 5 && x - 1 >= 0)
         cnt++;
-      if (map[y - 1][x + 1] == -2)
+      if (map[y - 1][x + 1] == -2 && y - 1 >= 0 && x + 1 < 5)
         cnt++;
 
       map[y][x] = cnt;
