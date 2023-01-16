@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int map[5][5];
 
@@ -14,9 +15,9 @@ void initialize()
 }
 
 void setBomb(){
-  map[0][1] = -2;
-  map[2][3] = -2;
-  map[5][4] = -2;
+  map[rand() % 5][rand() % 5] = -2;
+  map[rand() % 5][rand() % 5] = -2;
+  map[rand() % 5][rand() % 5] = -2;
 }
 
 void printMap(int x_size, int y_size)
