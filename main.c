@@ -20,6 +20,30 @@ void setBomb(){
   map[rand() % 5][rand() % 5] = -2;
 }
 
+void printAns(int x_size, int y_size)
+{
+  printf("  x 1 2 3 4 5\n");
+  printf("y - - - - - - -\n");
+  for (int y = 0; y < y_size; y++)
+  {
+    printf("%d |", y + 1);
+    for (int x = 0; x < x_size; x++)
+    {
+      if (map[y][x] >= 0)
+      {
+        printf(" %d", map[y][x]);
+      }
+      else
+      {
+        printf("%d", map[y][x]);
+      }
+    }
+    printf(" |\n");
+    printf("  - - - - - - -\n");
+  }
+  printf("\n");
+}
+
 void printMap(int x_size, int y_size)
 {
   printf("  x 1 2 3 4 5\n");
