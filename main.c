@@ -49,8 +49,7 @@ void printAns(int x_size, int y_size)
 
 void printMap(int x_size, int y_size)
 {
-  printf("  x 1 2 3 4 5\n");
-  printf("y - - - - - - -\n");
+  printf("  x 1 2 3 4 5\ny - - - - - - -\n");
   for (int y = 0; y < y_size; y++)
   {
     printf("%d |", y + 1);
@@ -65,8 +64,7 @@ void printMap(int x_size, int y_size)
         printf("  ");
       }
     }
-    printf(" |\n");
-    printf("  - - - - - - -\n");
+    printf(" |\n  - - - - - - -\n");
   }
   printf("\n");
 }
