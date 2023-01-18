@@ -4,6 +4,8 @@
 
 int map[5][5];
 
+void endJudgment();
+
 void initialize()
 {
   for (int y = 0; y < 5; y++)
@@ -114,6 +116,25 @@ void user_task()
       printf("既に開いています。\n");
     }
     printf("-----------------------------------\n");
+    endJudgment();
+  }
+}
+
+void endJudgment(){
+  int cnt = 0;
+  for (int y = 0; y < 5; y++)
+  {
+    for (int x = 0; x < 5; x++)
+    {
+      if (map[y][x] == -1)
+      {
+        cnt++;
+      }
+    }
+  }
+  if (cnt == 0){
+    printf("ゲームクリアです。\n");
+    exit(0);
   }
 }
 
