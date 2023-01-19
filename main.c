@@ -15,6 +15,7 @@ void initialize()
       map[y][x] = -1;
     }
   }
+  printf("\033[H\033[2J"); // 画面をクリア
 }
 
 void setBomb(){
@@ -51,7 +52,7 @@ void printAns(int x_size, int y_size)
 
 void printMap(int x_size, int y_size)
 {
-  printf("  x 1 2 3 4 5\ny - - - - - - -\n");
+  printf("\033[H  x 1 2 3 4 5\ny - - - - - - -\n");
   for (int y = 0; y < y_size; y++)
   {
     printf("%d |", y + 1);
@@ -77,7 +78,7 @@ void user_task()
   while (condition)
   {
     printMap(5, 5);
-    printf("座標を入力してください(x, y) :");
+    printf("座標を入力してください(x y) :\033[0K");
     int x, y;
     scanf("%d %d", &x, &y);
 
@@ -115,7 +116,6 @@ void user_task()
     {
       printf("既に開いています。\n");
     }
-    printf("-----------------------------------\n");
     endJudgment();
   }
 }
