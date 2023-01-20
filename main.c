@@ -8,6 +8,7 @@
 int map[Y_SIZE][X_SIZE];
 
 void endJudgment();
+int countBomb(int, int);
 
 void initialize()
 {
@@ -35,7 +36,7 @@ void printAns()
   printf("y - - - - - - -\n");
   for (int y = 0; y < Y_SIZE; y++)
   {
-    printf("%d |", y + 1);
+    printf("%d |", y+1);
     for (int x = 0; x < X_SIZE; x++)
     {
       if (map[y][x] >= 0)
@@ -61,7 +62,7 @@ void printMap()
   for(int j = 0; j <= X_SIZE; j++){ printf(" -"); }
   for(int y = 0; y < Y_SIZE; y++)
   {
-    printf("\n%d |", y + 1);
+    printf("\n%d |", y+1);
     for (int x = 0; x < X_SIZE; x++)
     {
       if (map[y][x] >= 0)
@@ -98,24 +99,7 @@ void user_task()
     }
     else if (map[y][x] == -1)
     {
-      int cnt = 0;
-      if (map[y - 1][x] == -2 && y - 1 >= 0)
-        cnt++;
-      if (map[y + 1][x] == -2 && y + 1 < 5)
-        cnt++;
-      if (map[y][x - 1] == -2 && x - 1 >= 0)
-        cnt++;
-      if (map[y][x + 1] == -2 && x + 1 < 5)
-        cnt++;
-      if (map[y - 1][x - 1] == -2 && y - 1 >= 0 && x - 1 >= 0)
-        cnt++;
-      if (map[y + 1][x + 1] == -2 && y + 1 < 5 && x + 1 < 5)
-        cnt++;
-      if (map[y + 1][x - 1] == -2 && y + 1 < 5 && x - 1 >= 0)
-        cnt++;
-      if (map[y - 1][x + 1] == -2 && y - 1 >= 0 && x + 1 < 5)
-        cnt++;
-
+      int cnt = countBomb(x, y);
       map[y][x] = cnt;
       printf("爆弾はありませんでした。\n");
     }
@@ -145,6 +129,27 @@ void endJudgment(){
   }
 }
 
+int countBomb(int x, int y){
+  int cnt = 0;
+  if (map[y-1][x] == -2 && y-1 >= 0)
+    cnt++;
+  if (map[y+1][x] == -2 && y+1 < Y_SIZE)
+    cnt++;
+  if (map[y][x-1] == -2 && x-1 >= 0)
+    cnt++;
+  if (map[y][x+1] == -2 && x+1 < X_SIZE)
+    cnt++;
+  if (map[y-1][x-1] == -2 && y-1 >= 0 && x-1 >= 0)
+    cnt++;
+  if (map[y+1][x+1] == -2 && y+1 < Y_SIZE && x+1 < X_SIZE)
+    cnt++;
+  if (map[y+1][x-1] == -2 && y+1 < Y_SIZE && x-1 >= 0)
+    cnt++;
+  if (map[y-1][x+1] == -2 && y-1 >= 0 && x+1 < X_SIZE)
+    cnt++;
+
+  return cnt;
+}
 int main(){
   initialize();
   setBomb();
