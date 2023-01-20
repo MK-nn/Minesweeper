@@ -2,15 +2,18 @@
 #include <stdlib.h>
 #include <time.h>
 
-int map[5][5];
+#define X_SIZE 8
+#define Y_SIZE 9
+
+int map[Y_SIZE][X_SIZE];
 
 void endJudgment();
 
 void initialize()
 {
-  for (int y = 0; y < 5; y++)
+  for (int y = 0; y < Y_SIZE; y++)
   {
-    for (int x = 0; x < 5; x++)
+    for (int x = 0; x < X_SIZE; x++)
     {
       map[y][x] = -1;
     }
@@ -21,19 +24,19 @@ void initialize()
 void setBomb(){
   srand((unsigned int)time(NULL));
 
-  map[rand() % 5][rand() % 5] = -2;
-  map[rand() % 5][rand() % 5] = -2;
-  map[rand() % 5][rand() % 5] = -2;
+  for(int i = 0; i < X_SIZE; i++){
+    map[rand() % Y_SIZE][rand() % X_SIZE] = -2;
+  }
 }
 
-void printAns(int x_size, int y_size)
+void printAns()
 {
   printf("  x 1 2 3 4 5\n");
   printf("y - - - - - - -\n");
-  for (int y = 0; y < y_size; y++)
+  for (int y = 0; y < Y_SIZE; y++)
   {
     printf("%d |", y + 1);
-    for (int x = 0; x < x_size; x++)
+    for (int x = 0; x < X_SIZE; x++)
     {
       if (map[y][x] >= 0)
       {
@@ -50,13 +53,16 @@ void printAns(int x_size, int y_size)
   printf("\n");
 }
 
-void printMap(int x_size, int y_size)
+void printMap()
 {
-  printf("\033[H  x 1 2 3 4 5\ny - - - - - - -\n");
-  for (int y = 0; y < y_size; y++)
+  printf("\033[H  x");
+  for(int i = 1; i <= X_SIZE; i++){ printf(" %d", i); }
+  printf("\ny");
+  for(int j = 0; j <= X_SIZE; j++){ printf(" -"); }
+  for(int y = 0; y < Y_SIZE; y++)
   {
-    printf("%d |", y + 1);
-    for (int x = 0; x < x_size; x++)
+    printf("\n%d |", y + 1);
+    for (int x = 0; x < X_SIZE; x++)
     {
       if (map[y][x] >= 0)
       {
@@ -67,7 +73,8 @@ void printMap(int x_size, int y_size)
         printf("  ");
       }
     }
-    printf(" |\n  - - - - - - -\n");
+    printf(" |\n ");
+    for(int k = 0; k <= X_SIZE; k++){ printf(" -"); }
   }
   printf("\n");
 }
@@ -77,7 +84,7 @@ void user_task()
   int condition = 1;
   while (condition)
   {
-    printMap(5, 5);
+    printMap();
     printf("座標を入力してください(x y) :\033[0K");
     int x, y;
     scanf("%d %d", &x, &y);
