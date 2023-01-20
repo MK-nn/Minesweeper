@@ -8,6 +8,7 @@
 int map[Y_SIZE][X_SIZE];
 
 void endJudgment();
+void additionalOpen(int, int);
 int countBomb(int, int);
 
 void initialize()
@@ -101,6 +102,7 @@ void user_task()
     {
       int cnt = countBomb(x, y);
       map[y][x] = cnt;
+      if(cnt == 0){ additionalOpen(x, y); }
       printf("爆弾はありませんでした。\n");
     }
     else
@@ -150,6 +152,51 @@ int countBomb(int x, int y){
 
   return cnt;
 }
+
+void additionalOpen(int x, int y){
+  int cnt;
+  if (map[y-1][x] == -1 && y-1 >= 0){
+    cnt = countBomb(x, y-1);
+    map[y-1][x] = cnt;
+    if(cnt == 0){ additionalOpen(x, y-1); }
+  }
+  if (map[y+1][x] == -1 && y+1 < Y_SIZE){
+    cnt = countBomb(x, y+1);
+    map[y+1][x] = cnt;
+    if(cnt == 0){ additionalOpen(x, y+1); }
+  }
+  if (map[y][x-1] == -1 && x-1 >= 0){
+    cnt = countBomb(x-1, y);
+    map[y][x-1] = cnt;
+    if(cnt == 0){ additionalOpen(x-1, y); }
+  }
+  if (map[y][x+1] == -1 && x+1 < X_SIZE){
+    cnt = countBomb(x+1, y);
+    map[y][x+1] = cnt;
+    if(cnt == 0){ additionalOpen(x+1, y); }
+  }
+  if (map[y-1][x-1] == -1 && y-1 >= 0 && x-1 >= 0){
+    cnt = countBomb(x-1, y-1);
+    map[y-1][x-1] = cnt;
+    if(cnt == 0){ additionalOpen(x-1, y-1); }
+  }
+  if (map[y+1][x+1] == -1 && y+1 < Y_SIZE && x+1 < X_SIZE){
+    cnt = countBomb(x+1, y+1);
+    map[y+1][x+1] = cnt;
+    if(cnt == 0){ additionalOpen(x+1, y+1); }
+  }
+  if (map[y+1][x-1] == -1 && y+1 < Y_SIZE && x-1 >= 0){
+    cnt = countBomb(x-1, y+1);
+    map[y+1][x-1] = cnt;
+    if(cnt == 0){ additionalOpen(x-1, y+1); }
+  }
+  if (map[y-1][x+1] == -1 && y-1 >= 0 && x+1 < X_SIZE){
+    cnt = countBomb(x+1, y-1);
+    map[y-1][x+1] = cnt;
+    if(cnt == 0){ additionalOpen(x+1, y-1); }
+  }
+}
+
 int main(){
   initialize();
   setBomb();
