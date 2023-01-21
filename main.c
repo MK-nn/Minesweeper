@@ -20,7 +20,7 @@ void initialize()
       map[y][x] = -1;
     }
   }
-  printf("\033[H\033[2J"); // 画面をクリア
+  printf("\033[H\033[2J");\
 }
 
 void setBomb(){
@@ -33,24 +33,28 @@ void setBomb(){
 
 void printAns()
 {
-  printf("  x 1 2 3 4 5\n");
-  printf("y - - - - - - -\n");
+  printf("  x");
+  for (int i = 1; i <= X_SIZE; i++)
+  {
+    printf(" %d", i);
+  }
+  printf("\ny");
+  for (int j = 0; j <= X_SIZE; j++)
+  {
+    printf(" -");
+  }
   for (int y = 0; y < Y_SIZE; y++)
   {
-    printf("%d |", y+1);
+    printf("\n%d |", y + 1);
     for (int x = 0; x < X_SIZE; x++)
     {
-      if (map[y][x] >= 0)
-      {
-        printf(" %d", map[y][x]);
-      }
-      else
-      {
-        printf("%d", map[y][x]);
-      }
+      printf(" %d", map[y][x]);
     }
-    printf(" |\n");
-    printf("  - - - - - - -\n");
+    printf(" |\n ");
+    for (int k = 0; k <= X_SIZE; k++)
+    {
+      printf(" -");
+    }
   }
   printf("\n");
 }
